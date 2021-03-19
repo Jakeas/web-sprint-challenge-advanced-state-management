@@ -3,17 +3,20 @@ import {
     FETCH_SMURF_SUCCESS,
     FETCH_SMURF_FAILURE,
     ADD_SMURF,
-    ERROR_VALUE
+    ERROR_VALUE,
+    SET_ERROR
 } from '../actions'
 
 export const initialState = {
     smurfs: [],
     isLoading: false,
     error: "",
+    errorValue: "",
+    setError: false,
     name: "",
     nickname: "",
     position: "",
-    summary: "",
+    description: "",
     id: "",
 }
 
@@ -44,12 +47,16 @@ export const reducer = (state = initialState, action)=>{
                 name: "",
                 nickname: "",
                 position: "",
-                summary: "",
+                description: "",
                 id: "",
             }
         case ERROR_VALUE:
             return {
-                error: action.payload,
+                errorValue: action.payload,
+            }
+        case SET_ERROR:
+            return { 
+                setError: action.payload
             }
        default: 
             return state
