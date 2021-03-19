@@ -12,7 +12,7 @@ export const initialState = {
     isLoading: false,
     error: "",
     errorValue: "",
-    setError: false,
+    setError: "",
     name: "",
     nickname: "",
     position: "",
@@ -20,7 +20,7 @@ export const initialState = {
     id: "",
 }
 
-export const reducer = (state = initialState, action)=>{
+export const reducer = (state = initialState, action) => {
    switch(action.type) {
        case FETCH_SMURF_START:
            return{
@@ -48,7 +48,7 @@ export const reducer = (state = initialState, action)=>{
                 nickname: "",
                 position: "",
                 description: "",
-                id: "",
+                id: ""
             }
         case ERROR_VALUE:
             return {

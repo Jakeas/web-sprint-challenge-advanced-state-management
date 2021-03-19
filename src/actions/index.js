@@ -10,12 +10,12 @@ export const SET_ERROR = "SET_ERROR"
 export const fetchSmurfs = () => {
     return dispatch => {
         dispatch({ type: FETCH_SMURF_START})
-
+        console.log({})
         axios
-            .get('http://localhost:3333/smurfs')
+            .get('http://localhost:3333/smurfs/')
             .then((res)=>{
                 console.log({res})
-                dispatch({ type:FETCH_SMURF_SUCCESS, payload:res })
+                dispatch({ type:FETCH_SMURF_SUCCESS, payload:res.data })
                 
             })
             .catch((err)=>{

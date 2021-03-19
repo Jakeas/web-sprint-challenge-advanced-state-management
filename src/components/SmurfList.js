@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Smurf from './Smurf';
 import { connect } from 'react-redux'
 import { fetchSmurfs } from '../actions/'
 
  const SmurfList = (props)=> {
+    useEffect(() =>{
+        props.fetchSmurfs();
+    },[])
 
     const isLoading = false;
     console.log({props})
