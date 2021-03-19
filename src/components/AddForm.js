@@ -18,15 +18,20 @@ const AddForm = (props) => {
     }
 
     const handleSubmit = e => {
+        console.log("from submit")
         e.preventDefault();
+        addSmurf({name: state.name, position: state.position, nickname: state.nickname, description:state.description})
         if (state.name === "" || state.position === "" || state.nickname === "") {
-            state.setError = "Name, position and nickname fields are required.";
+            // props.setError("Name, position and nickname fields are required.");  
         }
-         addSmurf(state.name, state.position, state.nickname, state.description)
+       
     }
+// console.log({addSmurf})
+// console.log({props})
+
 
     const errorMessage = "";
-
+console.log({props})
     return(<section>
         <h2>Add Smurf</h2>
         <form onSubmit={handleSubmit}>
@@ -49,26 +54,20 @@ const AddForm = (props) => {
             {
                 errorMessage && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {props.errorMessage}</div>
             }
-            <button>Submit Smurf</button>
+            <button type="submit">Submit Smurf</button>
         </form>
     </section>);
 }
 
+
 const mapStateToProps = state => {
     return{
-        addSmurf: state.addSmurf,
-        errorMessage: state.errorMessage,
-        setError: state.setError,
-        name:state.name,
-        position:state.position,
-        nickname:state.nickname,
-        description:state.description
+        ...state,
     }
-    
-
 }
 
-export default connect (mapStateToProps, {})(AddForm);
+console.log("addSmurf2", addSmurf)
+export default connect (mapStateToProps, {addSmurf})(AddForm);
 
 //Task List:
 //1. Connect the errorMessage, setError and addSmurf actions to the AddForm component.

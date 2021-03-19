@@ -9,7 +9,7 @@ import { fetchSmurfs } from '../actions/'
     },[])
 
     const isLoading = false;
-    console.log({props})
+    // console.log({props})
     const testSmurf = {
         id:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
         name:'Poppa Smurf',

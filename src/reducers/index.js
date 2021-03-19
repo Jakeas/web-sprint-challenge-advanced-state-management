@@ -13,11 +13,6 @@ export const initialState = {
     error: "",
     errorValue: "",
     setError: "",
-    name: "",
-    nickname: "",
-    position: "",
-    description: "",
-    id: "",
 }
 
 export const reducer = (state = initialState, action) => {
@@ -44,11 +39,11 @@ export const reducer = (state = initialState, action) => {
         case ADD_SMURF:
             return{
                 ...state,
-                name: "",
-                nickname: "",
-                position: "",
-                description: "",
-                id: ""
+                name: action.payload,
+                nickname: action.payload,
+                position: action.payload,
+                description: action.payload,
+                id: action.payload
             }
         case ERROR_VALUE:
             return {

@@ -26,6 +26,7 @@ export const fetchSmurfs = () => {
 }
 
 export const addSmurf =(addedSmurf) => {
+    console.log({addedSmurf})
     return { type:ADD_SMURF, payload: addedSmurf}
 }
 
