@@ -6,6 +6,9 @@ export const FETCH_SMURF_FAILURE = "FETCH_SMURF_SUCCESS"
 export const ADD_SMURF = "ADD_SMURF"
 export const ERROR_VALUE = "ERROR_VALUE"
 export const SET_ERROR = "SET_ERROR"
+export const ADD_START = "ADD_START"
+export const ADD_SUCCESS = "ADD_SUCCESS"
+export const ADD_ERROR = "ADD_ERROR"
 
 export const fetchSmurfs = () => {
     return dispatch => {
@@ -24,10 +27,34 @@ export const fetchSmurfs = () => {
             })
     }
 }
-
-export const addSmurf =(addedSmurf) => {
+export const addSmurf = (addedSmurf) => {
     console.log({addedSmurf})
-    return { type:ADD_SMURF, payload: addedSmurf}
+    return dispatch => {
+        dispatch ({ type: ADD_START})
+        
+        axios
+            .post('http://localhost:3333/smurfs/', addedSmurf)
+            .then((res) => {
+                console.log({res})
+                dispatch({ type:ADD_SUCCESS, payload:res.data})
+            })
+            .catch((err) => {
+                console.log({err})
+                dispatch({ type: ADD_ERROR, payload: err.message})
+            })
+    }
+}
+
+export const addStart = () => {
+    return {type: ADD_START}
+}
+
+export const addSuccess = () => {
+    return {type: ADD_SUCCESS}
+}
+
+export const addError = () => {
+    return {type: ADD_ERROR}
 }
 
 export const errorMessage = (errorValue) => {

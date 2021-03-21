@@ -2,9 +2,11 @@ import {
     FETCH_SMURF_START,
     FETCH_SMURF_SUCCESS,
     FETCH_SMURF_FAILURE,
-    ADD_SMURF,
     ERROR_VALUE,
-    SET_ERROR
+    SET_ERROR,
+    ADD_START,
+    ADD_SUCCESS,
+    ADD_ERROR
 } from '../actions'
 
 export const initialState = {
@@ -36,23 +38,37 @@ export const reducer = (state = initialState, action) => {
                isLoading: false,
                error: action.payload,
            }
-        case ADD_SMURF:
-            return{
-                ...state,
-                name: action.payload,
-                nickname: action.payload,
-                position: action.payload,
-                description: action.payload,
-                id: action.payload
-            }
         case ERROR_VALUE:
             return {
+                ...state,
                 errorValue: action.payload,
             }
         case SET_ERROR:
             return { 
-                setError: action.payload
+                ...state,
+                errorMessage: action.payload
             }
+        case ADD_START:
+            console.log({ADD_START})
+            return {
+                ...state,
+                isLoading: true,
+                error: ''
+            }
+        case ADD_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                error: "",
+                smurfs: action.payload
+            }
+        case ADD_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }
+        
        default: 
             return state
    } 
